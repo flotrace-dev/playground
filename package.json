@@ -1,0 +1,28 @@
+{
+  "name": "flotrace-playground",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "5 deliberately-broken React bugs you can see live in FloTrace.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@flotrace/runtime": "^2.2.1",
+    "@tanstack/react-query": "^5.59.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  }
+}
