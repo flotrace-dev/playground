@@ -35,7 +35,7 @@ export function App() {
       >
         <p>
           MIT licensed ·{" "}
-          <a href="https://github.com/flotracedev/playground">GitHub</a> ·
+          <a href="https://github.com/flotrace-dev/playground">GitHub</a> ·
           PRs adding more bugs welcome.
         </p>
       </footer>

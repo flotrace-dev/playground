@@ -19,7 +19,7 @@ Each bug is isolated to its own component so you can see them light up one at a 
 ## 2-minute setup
 
 ```bash
-git clone https://github.com/flotracedev/playground.git
+git clone https://github.com/flotrace-dev/playground.git
 cd playground
 npm install
 npm run dev
@@ -63,7 +63,7 @@ PRs adding more bugs are welcome. The bar:
 - Keeps the playground building cleanly with `npm run typecheck`
 - Add a row to the table above
 
-Issues for FloTrace bugs go in the [main FloTrace repo](https://github.com/flotracedev). This repo is for playground content only.
+Issues for FloTrace bugs go in the [main FloTrace repo](https://github.com/flotrace-dev). This repo is for playground content only.
 
 ## License
 
