@@ -107,3 +107,57 @@ input {
   font-size: 12px;
   color: #9ca3af;
 }
+
+.toc {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #1f2429;
+  border-radius: 12px;
+  background: #121519;
+}
+
+.toc-group h4 {
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.toc-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.toc-group a {
+  display: block;
+  font-size: 12px;
+  padding: 2px 0;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.toc-group a:hover {
+  color: #60a5fa;
+}
+
+.group-title {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+.group-blurb {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+}
