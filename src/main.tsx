@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")!).render(
     <ReduxProvider store={reduxStore}>
       <QueryClientProvider client={queryClient}>
         <FloTraceProvider
-          config={{ appName: "FloTrace Playground" }}
+          config={{ appName: "FloTrace vite Playground" }}
           // Two Zustand stores tracked independently — userStore for Bug 4,
           // counterStore for Bug 16 (watch demo) + Bug 9 (effect bugs).
           // eslint-disable-next-line @typescript-eslint/no-explicit-any

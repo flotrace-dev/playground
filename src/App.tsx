@@ -15,6 +15,8 @@ import { Bug13UseTransition } from "./components/Bug13UseTransition";
 import { Bug14SuspenseLazy } from "./components/Bug14SuspenseLazy";
 import { Bug15Router } from "./components/Bug15Router";
 import { Bug16WatchDemo } from "./components/Bug16WatchDemo";
+import { Bug17Xhr } from "./components/Bug17Xhr";
+import { Bug18TanstackMutations } from "./components/Bug18TanstackMutations";
 
 interface Group {
   title: string;
@@ -63,20 +65,22 @@ const GROUPS: Group[] = [
   {
     title: "Network — with TanStack",
     blurb:
-      "Refetch storms, suspense queries — how the TanStack Query panel and state timeline behave under stress.",
+      "Refetch storms, mutations + optimistic updates, suspense queries — how the TanStack Query panel and state timeline behave under stress.",
     bugs: [
       { id: "bug6", label: "Bug 6 · TanStack refetch storm", Component: Bug6TanStackRefetch },
+      { id: "bug18", label: "Bug 18 · TanStack mutations", Component: Bug18TanstackMutations },
       { id: "bug14", label: "Bug 14 · Suspense + lazy", Component: Bug14SuspenseLazy },
     ],
   },
   {
     title: "Network — without TanStack",
     blurb:
-      "Plain useEffect + fetch, duplicate calls, errors, slow APIs — how the network panel handles raw HTTP.",
+      "Plain useEffect + fetch, XMLHttpRequest, duplicate calls, errors, slow APIs — how the network panel handles raw HTTP.",
     bugs: [
       { id: "bug4", label: "Bug 4 · Duplicate API call", Component: Bug4DuplicateApi },
       { id: "bug7", label: "Bug 7 · Raw fetch (no TanStack)", Component: Bug7RawFetch },
       { id: "bug12", label: "Bug 12 · Network errors + slow", Component: Bug12NetworkErrors },
+      { id: "bug17", label: "Bug 17 · XHR (XMLHttpRequest)", Component: Bug17Xhr },
     ],
   },
   {
@@ -103,7 +107,7 @@ export function App() {
       <header style={{ marginBottom: 32 }}>
         <h1 style={{ margin: 0, fontSize: 28 }}>FloTrace Playground</h1>
         <p style={{ color: "#9ca3af", fontSize: 14, margin: "8px 0 0 0" }}>
-          16 deliberately broken patterns covering every FloTrace debugging
+          18 deliberately broken patterns covering every FloTrace debugging
           surface. Open <a href="https://flotrace.dev/download">FloTrace</a> and
           watch each panel light up — render cascades, prop drilling, memo
           bypass, refetch storms, Redux bursts, useTransition, suspense,
