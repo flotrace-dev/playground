@@ -6,27 +6,27 @@
 // In FloTrace: Network panel renders green/red status dots, slow-request
 // timing badge fires on the third call, method/URL/status all visible.
 
-import { useState } from "react";
-import { fetchPost, fetchBroken404, fetchSlow } from "../api/jsonPlaceholder";
+import { useState } from 'react';
+import { fetchPost, fetchBroken404, fetchSlow } from '../api/jsonPlaceholder';
 
 interface Result {
   label: string;
-  status: "idle" | "loading" | "ok" | "error";
+  status: 'idle' | 'loading' | 'ok' | 'error';
   detail: string;
   ms: number;
 }
 
 const initial: Result[] = [
-  { label: "200 fast", status: "idle", detail: "—", ms: 0 },
-  { label: "404 broken", status: "idle", detail: "—", ms: 0 },
-  { label: "200 slow (~2.5s)", status: "idle", detail: "—", ms: 0 },
+  { label: '200 fast', status: 'idle', detail: '—', ms: 0 },
+  { label: '404 broken', status: 'idle', detail: '—', ms: 0 },
+  { label: '200 slow (~2.5s)', status: 'idle', detail: '—', ms: 0 },
 ];
 
 export function Bug12NetworkErrors() {
   const [results, setResults] = useState<Result[]>(initial);
 
   const run = async () => {
-    setResults((rs) => rs.map((r) => ({ ...r, status: "loading", detail: "…" })));
+    setResults((rs) => rs.map((r) => ({ ...r, status: 'loading', detail: '…' })));
     const update = (idx: number, patch: Partial<Result>) =>
       setResults((rs) => rs.map((r, i) => (i === idx ? { ...r, ...patch } : r)));
 
@@ -35,13 +35,13 @@ export function Bug12NetworkErrors() {
       try {
         const data = await fn();
         update(idx, {
-          status: "ok",
-          detail: typeof data === "string" ? data : "ok",
+          status: 'ok',
+          detail: typeof data === 'string' ? data : 'ok',
           ms: Math.round(performance.now() - t0),
         });
       } catch (err) {
         update(idx, {
-          status: "error",
+          status: 'error',
           detail: (err as Error).message,
           ms: Math.round(performance.now() - t0),
         });
@@ -62,9 +62,9 @@ export function Bug12NetworkErrors() {
       <span className="label">Bug 12 · Network errors + slow requests</span>
       <h2>One click, three real requests, mixed outcomes</h2>
       <p className="description">
-        Triggers a healthy GET, a 404, and a deliberately slow (~2.5s) GET
-        against JSONPlaceholder. FloTrace's network panel shows status dots
-        (green/red), method/URL, and a slow-request timing badge.
+        Triggers a healthy GET, a 404, and a deliberately slow (~2.5s) GET against JSONPlaceholder.
+        FloTrace's network panel shows status dots (green/red), method/URL, and a slow-request
+        timing badge.
       </p>
       <div className="demo">
         <button className="btn" onClick={run}>
@@ -73,9 +73,8 @@ export function Bug12NetworkErrors() {
         <ul className="list" style={{ marginTop: 12 }}>
           {results.map((r) => (
             <li key={r.label}>
-              <span style={{ color: statusColor(r.status) }}>●</span>{" "}
-              <strong>{r.label}</strong> — {r.detail}{" "}
-              <span className="muted">({r.ms}ms)</span>
+              <span style={{ color: statusColor(r.status) }}>●</span> <strong>{r.label}</strong> —{' '}
+              {r.detail} <span className="muted">({r.ms}ms)</span>
             </li>
           ))}
         </ul>
@@ -84,15 +83,15 @@ export function Bug12NetworkErrors() {
   );
 }
 
-function statusColor(s: Result["status"]): string {
+function statusColor(s: Result['status']): string {
   switch (s) {
-    case "ok":
-      return "#34d399";
-    case "error":
-      return "#f87171";
-    case "loading":
-      return "#fbbf24";
+    case 'ok':
+      return '#34d399';
+    case 'error':
+      return '#f87171';
+    case 'loading':
+      return '#fbbf24';
     default:
-      return "#6b7280";
+      return '#6b7280';
   }
 }

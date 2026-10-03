@@ -3,7 +3,7 @@
 // frequency metric jumps into the "excessive renders" tier and the node
 // flash-animation goes constant. Off by default — flip the switch to start.
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function Bug11ExcessiveRenders() {
   const [enabled, setEnabled] = useState(false);
@@ -14,21 +14,17 @@ export function Bug11ExcessiveRenders() {
       <span className="label">Bug 11 · Excessive render frequency</span>
       <h2>60 setState calls per second</h2>
       <p className="description">
-        <code>FastTicker</code> calls <code>setState</code> on a{" "}
-        <code>setInterval</code> at {hz}Hz. FloTrace logs the &quot;excessive
-        renders&quot; warning, the node flashes constantly, and the top
-        renderers panel pins it at #1.
+        <code>FastTicker</code> calls <code>setState</code> on a <code>setInterval</code> at {hz}Hz.
+        FloTrace logs the &quot;excessive renders&quot; warning, the node flashes constantly, and
+        the top renderers panel pins it at #1.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12, alignItems: "center" }}>
-          <button
-            className="btn"
-            onClick={() => setEnabled((e) => !e)}
-          >
-            {enabled ? "Stop" : "Start"} ticker
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'center' }}>
+          <button className="btn" onClick={() => setEnabled((e) => !e)}>
+            {enabled ? 'Stop' : 'Start'} ticker
           </button>
           <label className="kv">
-            Hz:{" "}
+            Hz:{' '}
             <input
               type="number"
               value={hz}

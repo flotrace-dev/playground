@@ -3,7 +3,7 @@
 // at the bottom in Avatar. Refactoring is risky because the chain isn't visible.
 // In FloTrace: DFS chain detection flags the drill, severity = high.
 
-import { useState } from "react";
+import { useState } from 'react';
 
 interface User {
   name: string;
@@ -11,15 +11,14 @@ interface User {
 }
 
 export function Bug2PropDrilling() {
-  const [user, setUser] = useState<User>({ name: "Ada", initials: "AL" });
+  const [user, setUser] = useState<User>({ name: 'Ada', initials: 'AL' });
   return (
     <section className="bug">
       <span className="label">Bug 2 · Prop drilling</span>
       <h2>One value, threaded through 5 components</h2>
       <p className="description">
-        <code>user</code> is handed from <code>App</code> to{" "}
-        <code>Layout → Page → Sidebar → Profile → Avatar</code>. Only{" "}
-        <code>Avatar</code> uses it.
+        <code>user</code> is handed from <code>App</code> to{' '}
+        <code>Layout → Page → Sidebar → Profile → Avatar</code>. Only <code>Avatar</code> uses it.
       </p>
       <div className="demo">
         <Layout user={user} />
@@ -28,9 +27,9 @@ export function Bug2PropDrilling() {
           style={{ marginTop: 12 }}
           onClick={() =>
             setUser((u) =>
-              u.name === "Ada"
-                ? { name: "Grace", initials: "GH" }
-                : { name: "Ada", initials: "AL" }
+              u.name === 'Ada'
+                ? { name: 'Grace', initials: 'GH' }
+                : { name: 'Ada', initials: 'AL' },
             )
           }
         >
@@ -55,16 +54,16 @@ function Profile({ user }: { user: User }) {
 }
 function Avatar({ user }: { user: User }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <div
         style={{
           width: 36,
           height: 36,
-          borderRadius: "50%",
-          background: "#2563eb",
-          color: "white",
-          display: "grid",
-          placeItems: "center",
+          borderRadius: '50%',
+          background: '#2563eb',
+          color: 'white',
+          display: 'grid',
+          placeItems: 'center',
           fontSize: 13,
           fontWeight: 600,
         }}

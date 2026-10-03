@@ -5,8 +5,8 @@
 // effects panel shows both useEffects rerunning, causal arrows trace each
 // fetch back to the component that fired it.
 
-import { useEffect, useState } from "react";
-import { fetchUser, type PublicUser } from "../api/jsonPlaceholder";
+import { useEffect, useState } from 'react';
+import { fetchUser, type PublicUser } from '../api/jsonPlaceholder';
 
 export function Bug7RawFetch() {
   const [userId, setUserId] = useState(1);
@@ -17,16 +17,13 @@ export function Bug7RawFetch() {
       <h2>Two useEffect + fetch consumers, no dedupe</h2>
       <p className="description">
         <code>NameCard</code> and <code>EmailCard</code> independently call
-        <code> fetchUser(id) </code>via raw <code>useEffect + fetch</code>. With
-        no shared cache the network panel shows two requests for every id
-        switch — the classic pattern FloTrace was built to surface.
+        <code> fetchUser(id) </code>via raw <code>useEffect + fetch</code>. With no shared cache the
+        network panel shows two requests for every id switch — the classic pattern FloTrace was
+        built to surface.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          <button
-            className="btn"
-            onClick={() => setUserId((id) => (id % 10) + 1)}
-          >
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <button className="btn" onClick={() => setUserId((id) => (id % 10) + 1)}>
             Next user (id={userId})
           </button>
         </div>
@@ -57,8 +54,8 @@ function NameCard({ userId }: { userId: number }) {
 
   return (
     <div className="kv">
-      Name: {loading ? "loading..." : user?.name ?? "—"}{" "}
-      <span className="muted">({user?.company.name ?? "—"})</span>
+      Name: {loading ? 'loading...' : (user?.name ?? '—')}{' '}
+      <span className="muted">({user?.company.name ?? '—'})</span>
     </div>
   );
 }
@@ -72,8 +69,7 @@ function EmailCard({ userId }: { userId: number }) {
 
   return (
     <div className="kv">
-      Email: {user?.email ?? "loading..."}{" "}
-      <span className="muted">phone {user?.phone ?? "—"}</span>
+      Email: {user?.email ?? 'loading...'} <span className="muted">phone {user?.phone ?? '—'}</span>
     </div>
   );
 }

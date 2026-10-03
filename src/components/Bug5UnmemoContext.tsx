@@ -4,10 +4,10 @@
 // In FloTrace: heatmap turns the consumer subtree red, render reason
 // "context value reference changed", AI Review → Context tab suggests useMemo.
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 interface ThemeContextValue {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggle: () => void;
 }
 
@@ -15,7 +15,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function useTheme() {
   const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error("ThemeContext missing");
+  if (!ctx) throw new Error('ThemeContext missing');
   return ctx;
 }
 
@@ -27,9 +27,8 @@ export function Bug5UnmemoContext() {
       <span className="label">Bug 5 · Unmemoized context</span>
       <h2>Context value rebuilt on every commit</h2>
       <p className="description">
-        Every render of <code>ThemeProvider</code> creates a new{" "}
-        <code>{`{ mode, toggle }`}</code> object — so every consumer
-        re-renders, even consumers that only read <code>mode</code>.
+        Every render of <code>ThemeProvider</code> creates a new <code>{`{ mode, toggle }`}</code>{' '}
+        object — so every consumer re-renders, even consumers that only read <code>mode</code>.
       </p>
       <div className="demo">
         <p className="kv">parent tick: {tick}</p>
@@ -37,11 +36,7 @@ export function Bug5UnmemoContext() {
           <ThemedHeader />
           <ThemedFooter />
         </ThemeProvider>
-        <button
-          className="btn"
-          style={{ marginTop: 12 }}
-          onClick={() => setTick((t) => t + 1)}
-        >
+        <button className="btn" style={{ marginTop: 12 }} onClick={() => setTick((t) => t + 1)}>
           Tick parent
         </button>
       </div>
@@ -50,11 +45,11 @@ export function Bug5UnmemoContext() {
 }
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = useState<"light" | "dark">("dark");
+  const [mode, setMode] = useState<'light' | 'dark'>('dark');
   // BUG: new object every render — should be useMemo'd
   const value: ThemeContextValue = {
     mode,
-    toggle: () => setMode((m) => (m === "dark" ? "light" : "dark")),
+    toggle: () => setMode((m) => (m === 'dark' ? 'light' : 'dark')),
   };
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
@@ -62,7 +57,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
 function ThemedHeader() {
   const { mode, toggle } = useTheme();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <span className="kv">ThemedHeader mode: {mode}</span>
       <button className="btn btn-secondary" onClick={toggle}>
         Toggle

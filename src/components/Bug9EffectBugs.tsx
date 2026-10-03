@@ -8,7 +8,7 @@
 // highlights the unstable identity, plus a "stale dep captured" warning on
 // the closure.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export function Bug9EffectBugs() {
   const [tick, setTick] = useState(0);
@@ -19,23 +19,16 @@ export function Bug9EffectBugs() {
       <span className="label">Bug 9 · Effect foot-guns</span>
       <h2>Stale closures and always-changing deps</h2>
       <p className="description">
-        Two effect bugs in one tree: a <code>setInterval</code> with empty deps
-        captures a stale <code>count</code>, and an effect with an{" "}
-        <code>{`{ filter }`}</code> object dep re-runs on every render. Hit{" "}
-        <em>Start</em> to enable.
+        Two effect bugs in one tree: a <code>setInterval</code> with empty deps captures a stale{' '}
+        <code>count</code>, and an effect with an <code>{`{ filter }`}</code> object dep re-runs on
+        every render. Hit <em>Start</em> to enable.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          <button
-            className="btn"
-            onClick={() => setEnabled((e) => !e)}
-          >
-            {enabled ? "Stop" : "Start"} interval
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <button className="btn" onClick={() => setEnabled((e) => !e)}>
+            {enabled ? 'Stop' : 'Start'} interval
           </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setTick((t) => t + 1)}
-          >
+          <button className="btn btn-secondary" onClick={() => setTick((t) => t + 1)}>
             Re-render parent (tick={tick})
           </button>
         </div>
@@ -63,7 +56,7 @@ function StaleClosure() {
 
   return (
     <div className="kv">
-      Counter: {count} · stale snapshots seen: [{seenRef.current.join(", ")}]
+      Counter: {count} · stale snapshots seen: [{seenRef.current.join(', ')}]
     </div>
   );
 }
@@ -74,16 +67,19 @@ function UnstableDep({ parentTick }: { parentTick: number }) {
   // would form a render→effect→setState→render loop and peg the CPU.
   const runsRef = useRef(0);
   // BUG: `{ filter }` is a fresh object every render, so the effect re-runs.
-  const config = { filter: "active", parentTick };
+  // The unstable dependency IS the demo — this component exists to make the
+  // bug observable in FloTrace, so the lint rule is suppressed rather than
+  // satisfied. The rule anchors to the declaration, not the deps array.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const config = { filter: 'active', parentTick };
 
   useEffect(() => {
     runsRef.current += 1;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config]);
 
   return (
     <div className="kv">
-      UnstableDep effect runs: {runsRef.current} · last config={JSON.stringify(config)}{" "}
+      UnstableDep effect runs: {runsRef.current} · last config={JSON.stringify(config)}{' '}
       <span className="muted">(re-render parent to bump)</span>
     </div>
   );

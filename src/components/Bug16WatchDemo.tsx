@@ -4,23 +4,23 @@
 // (if open) the Redux session slice. The nested objects are deliberately
 // rich so dot-path resolution has interesting paths to follow.
 
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useCounterStore } from "../store/counterStore";
-import type { RootState } from "../store/reduxStore";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useCounterStore } from '../store/counterStore';
+import type { RootState } from '../store/reduxStore';
 
 interface Settings {
-  theme: "dark" | "light";
+  theme: 'dark' | 'light';
   notifications: { email: boolean; push: boolean };
   recentSearches: string[];
   user: { id: number; profile: { name: string; tags: string[] } };
 }
 
 const INITIAL_SETTINGS: Settings = {
-  theme: "dark",
+  theme: 'dark',
   notifications: { email: true, push: false },
-  recentSearches: ["react", "hooks", "memo"],
-  user: { id: 7, profile: { name: "Ada", tags: ["admin", "beta"] } },
+  recentSearches: ['react', 'hooks', 'memo'],
+  user: { id: 7, profile: { name: 'Ada', tags: ['admin', 'beta'] } },
 };
 
 export function Bug16WatchDemo() {
@@ -37,13 +37,12 @@ export function Bug16WatchDemo() {
       <span className="label">Bug 16 · Watch expression playground</span>
       <h2>Pin any value from any source</h2>
       <p className="description">
-        This panel is intentionally noisy — try right-clicking any value in
-        FloTrace&apos;s tree (Props, Hooks, Zustand <code>counterStore</code>,
-        Redux <code>session</code>) and pinning it. Then use the buttons here to
-        watch the pinned values change live.
+        This panel is intentionally noisy — try right-clicking any value in FloTrace&apos;s tree
+        (Props, Hooks, Zustand <code>counterStore</code>, Redux <code>session</code>) and pinning
+        it. Then use the buttons here to watch the pinned values change live.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
           <button className="btn" onClick={increment}>
             counterStore.increment()
           </button>
@@ -58,7 +57,7 @@ export function Bug16WatchDemo() {
             onClick={() =>
               setSettings((s) => ({
                 ...s,
-                theme: s.theme === "dark" ? "light" : "dark",
+                theme: s.theme === 'dark' ? 'light' : 'dark',
               }))
             }
           >
@@ -82,7 +81,12 @@ export function Bug16WatchDemo() {
             push user.profile.tags
           </button>
         </div>
-        <NestedConsumer settings={settings} count={count} bumps={bumps} sessionUserId={sessionUserId} />
+        <NestedConsumer
+          settings={settings}
+          count={count}
+          bumps={bumps}
+          sessionUserId={sessionUserId}
+        />
       </div>
     </section>
   );
@@ -105,13 +109,11 @@ function NestedConsumer({
         <span className="kv">props.settings.theme = {settings.theme}</span>
       </li>
       <li>
-        <span className="kv">
-          props.settings.user.profile.name = {settings.user.profile.name}
-        </span>
+        <span className="kv">props.settings.user.profile.name = {settings.user.profile.name}</span>
       </li>
       <li>
         <span className="kv">
-          props.settings.user.profile.tags = [{settings.user.profile.tags.join(", ")}]
+          props.settings.user.profile.tags = [{settings.user.profile.tags.join(', ')}]
         </span>
       </li>
       <li>
@@ -121,7 +123,7 @@ function NestedConsumer({
         <span className="kv">counterStore.meta.bumps = {bumps}</span>
       </li>
       <li>
-        <span className="kv">redux.session.userId = {sessionUserId ?? "—"}</span>
+        <span className="kv">redux.session.userId = {sessionUserId ?? '—'}</span>
       </li>
     </ul>
   );

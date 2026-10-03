@@ -13,8 +13,8 @@ export async function fetchMe(): Promise<MeResponse> {
   await new Promise((r) => setTimeout(r, 400));
   return {
     id: 42,
-    name: "Ada Lovelace",
-    email: "ada@example.com",
-    role: "engineer",
+    name: 'Ada Lovelace',
+    email: 'ada@example.com',
+    role: 'engineer',
   };
 }

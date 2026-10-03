@@ -8,8 +8,8 @@
 // We intentionally do *not* set headers / caches here — the runtime patches
 // `fetch` so each call shows up in FloTrace exactly as written.
 
-const JSON_PLACEHOLDER = "https://jsonplaceholder.typicode.com";
-const DUMMY_JSON = "https://dummyjson.com";
+const JSON_PLACEHOLDER = 'https://jsonplaceholder.typicode.com';
+const DUMMY_JSON = 'https://dummyjson.com';
 
 export interface Post {
   id: number;
@@ -62,7 +62,7 @@ export async function fetchProducts(limit = 12): Promise<{ products: Product[] }
 }
 
 export async function fetchGitHubZen(): Promise<string> {
-  const res = await fetch("https://api.github.com/zen");
+  const res = await fetch('https://api.github.com/zen');
   if (!res.ok) throw new Error(`fetchGitHubZen failed: ${res.status}`);
   return res.text();
 }
@@ -78,9 +78,7 @@ export async function fetchBroken404(): Promise<unknown> {
 // Slow real request — `_delay` is a JSONPlaceholder feature that holds the
 // response open for N milliseconds. Useful for the "slow API" demo.
 export async function fetchSlow(delayMs = 2500): Promise<Post[]> {
-  const res = await fetch(
-    `${JSON_PLACEHOLDER}/posts?_limit=3&_delay=${delayMs}`
-  );
+  const res = await fetch(`${JSON_PLACEHOLDER}/posts?_limit=3&_delay=${delayMs}`);
   if (!res.ok) throw new Error(`fetchSlow failed: ${res.status}`);
   return res.json();
 }

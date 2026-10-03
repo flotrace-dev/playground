@@ -5,9 +5,9 @@
 // In FloTrace: render reason "prop reference changed: options",
 // AI Review → Memo tab flags it.
 
-import { memo, useState } from "react";
+import { memo, useState } from 'react';
 
-const ITEMS = ["Alpha", "Bravo", "Charlie", "Delta", "Echo"];
+const ITEMS = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'];
 
 export function Bug3MemoBypass() {
   const [tick, setTick] = useState(0);
@@ -17,13 +17,12 @@ export function Bug3MemoBypass() {
       <span className="label">Bug 3 · Memo bypass</span>
       <h2>React.memo defeated by an inline object literal</h2>
       <p className="description">
-        Click &quot;Tick&quot; — only the parent state changed, but{" "}
-        <code>ExpensiveList</code> still re-renders because{" "}
-        <code>{`options={{ sort: 'asc' }}`}</code> is a new object every commit.
+        Click &quot;Tick&quot; — only the parent state changed, but <code>ExpensiveList</code> still
+        re-renders because <code>{`options={{ sort: 'asc' }}`}</code> is a new object every commit.
       </p>
       <div className="demo">
         <p className="kv">parent tick: {tick}</p>
-        <ExpensiveList items={ITEMS} options={{ sort: "asc" }} />
+        <ExpensiveList items={ITEMS} options={{ sort: 'asc' }} />
         <button className="btn" onClick={() => setTick((t) => t + 1)}>
           Tick
         </button>
@@ -33,7 +32,7 @@ export function Bug3MemoBypass() {
 }
 
 interface ListOptions {
-  sort: "asc" | "desc";
+  sort: 'asc' | 'desc';
 }
 
 const ExpensiveList = memo(function ExpensiveList({
@@ -44,7 +43,7 @@ const ExpensiveList = memo(function ExpensiveList({
   options: ListOptions;
 }) {
   const sorted = [...items].sort((a, b) =>
-    options.sort === "asc" ? a.localeCompare(b) : b.localeCompare(a)
+    options.sort === 'asc' ? a.localeCompare(b) : b.localeCompare(a),
   );
   return (
     <ul className="list" style={{ marginBottom: 12 }}>

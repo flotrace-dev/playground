@@ -5,9 +5,9 @@
 // In FloTrace: Router panel populates with the route timeline, current
 // pathname pill in the toolbar updates live.
 
-import { usePathname, useNavigate } from "../router/tinyRouter";
+import { usePathname, useNavigate } from '../router/tinyRouter';
 
-const ROUTES = ["/", "/playground/dashboard", "/playground/inbox", "/playground/settings"];
+const ROUTES = ['/', '/playground/dashboard', '/playground/inbox', '/playground/settings'];
 
 export function Bug15Router() {
   const path = usePathname();
@@ -18,16 +18,16 @@ export function Bug15Router() {
       <span className="label">Bug 15 · Router tracking</span>
       <h2>History API navigation, no react-router</h2>
       <p className="description">
-        Buttons below call <code>window.history.pushState</code>. FloTrace's
-        web router tracker patches the History API at runtime, so the route
-        timeline populates without any router library installed.
+        Buttons below call <code>window.history.pushState</code>. FloTrace's web router tracker
+        patches the History API at runtime, so the route timeline populates without any router
+        library installed.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
           {ROUTES.map((r) => (
             <button
               key={r}
-              className={r === path ? "btn" : "btn btn-secondary"}
+              className={r === path ? 'btn' : 'btn btn-secondary'}
               onClick={() => navigate(r)}
             >
               {r}
@@ -41,9 +41,9 @@ export function Bug15Router() {
 }
 
 function RouteContent({ path }: { path: string }) {
-  if (path === "/playground/dashboard") return <Dashboard />;
-  if (path === "/playground/inbox") return <Inbox />;
-  if (path === "/playground/settings") return <Settings />;
+  if (path === '/playground/dashboard') return <Dashboard />;
+  if (path === '/playground/inbox') return <Inbox />;
+  if (path === '/playground/settings') return <Settings />;
   return <Home />;
 }
 

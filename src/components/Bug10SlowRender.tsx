@@ -4,7 +4,7 @@
 // the node red and the slow-render warning shows up in the metrics panel.
 // Toggle the workload to see the heatmap calm down on the same node.
 
-import { useState } from "react";
+import { useState } from 'react';
 
 function busyWait(ms: number) {
   const end = performance.now() + ms;
@@ -21,21 +21,17 @@ export function Bug10SlowRender() {
       <span className="label">Bug 10 · Slow render</span>
       <h2>30ms of sync work in the render body</h2>
       <p className="description">
-        Each click to <em>Tick</em> re-renders <code>SlowChild</code>, which
-        burns ~30ms in a busy loop — past the 16ms frame budget. FloTrace's
-        heatmap turns the node red and the &quot;slow render&quot; metric
-        spikes.
+        Each click to <em>Tick</em> re-renders <code>SlowChild</code>, which burns ~30ms in a busy
+        loop — past the 16ms frame budget. FloTrace's heatmap turns the node red and the &quot;slow
+        render&quot; metric spikes.
       </p>
       <div className="demo">
-        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
           <button className="btn" onClick={() => setTick((t) => t + 1)}>
             Tick (re-render)
           </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setHeavy((h) => !h)}
-          >
-            {heavy ? "Disable" : "Enable"} 30ms workload
+          <button className="btn btn-secondary" onClick={() => setHeavy((h) => !h)}>
+            {heavy ? 'Disable' : 'Enable'} 30ms workload
           </button>
         </div>
         <SlowChild tick={tick} heavy={heavy} />
@@ -48,8 +44,8 @@ function SlowChild({ tick, heavy }: { tick: number; heavy: boolean }) {
   if (heavy) busyWait(30);
   return (
     <div className="kv">
-      SlowChild rendered (tick={tick}, heavy={String(heavy)}) — 30ms blocking work
-      ran inside render body.
+      SlowChild rendered (tick={tick}, heavy={String(heavy)}) — 30ms blocking work ran inside render
+      body.
     </div>
   );
 }

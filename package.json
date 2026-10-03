@@ -17,7 +17,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "zustand": "^5.0.12"
+    "zustand": "^5.0.12",
+    "@flotrace/runtime": "^2.4.2"
   },
   "devDependencies": {
     "@types/react": "^19.1.4",
